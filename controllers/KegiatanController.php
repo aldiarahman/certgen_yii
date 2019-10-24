@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Kegiatan;
 use app\models\KegiatanSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,10 +21,31 @@ class KegiatanController extends Controller
     public function behaviors()
     {
         return [
+            'access'=>[
+                'class'=>AccessControl::className(),
+                'rules'=>[
+                    [
+                        'actions'=>[
+                            'index',
+                            'create',
+                            'update',
+                            'delete',
+                            'view'
+                        ],
+                        'allow'=>true,
+                        'roles'=>['@'],
+                        'matchCallback'=>function(){
+                            return (
+                                Yii::$app->user->identity->role=='admin'
+                            );
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
                 ],
             ],
         ];
