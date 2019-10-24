@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\KegiatanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Kegiatans';
+$this->title = 'Kegiatan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="kegiatan-index">
@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'kodekegiatan',
             'namakegiatan',
             [
