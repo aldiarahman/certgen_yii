@@ -39,26 +39,35 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Kegiatan', 'url' => ['/kegiatan']],
-                ['label' => 'Sertifikat', 'url' => ['/sertifikat']],
-                ['label' => 'User', 'url' => ['/user']],
 
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            ),
+                Yii::$app->user->isGuest ? '' : (
+                    ['label' => 'Kegiatan', 'url' => ['/kegiatan']]
+                ),
 
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Sign up', 'url' => ['/site/register']]
-            ) : '',
+                Yii::$app->user->isGuest ? '' : (
+                    ['label' => 'Sertifikat', 'url' => ['/sertifikat']]
+                ),
+
+                Yii::$app->user->isGuest ? '' : (
+                    ['label' => 'User', 'url' => ['/user']]
+                ),
+
+                Yii::$app->user->isGuest ? (
+                    ['label' => 'Login', 'url' => ['/site/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                ),
+
+                Yii::$app->user->isGuest ? (
+                    ['label' => 'Sign up', 'url' => ['/site/register']]
+                ) : '',
         ],
     ]);
     NavBar::end();

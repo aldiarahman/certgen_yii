@@ -7,7 +7,7 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Certificate Generator</h1>
+        <h1><b>ARS</b> e-Certificate</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
     </div>
